@@ -1,9 +1,9 @@
 {
   "rewrites": [
-    { "source": "/api/:path*", "destination": "https://random-words-here.trycloudflare.com/api/:path*" },
-    { "source": "/health/:path*", "destination": "https://random-words-here.trycloudflare.com/health/:path*" },
-    { "source": "/health", "destination": "https://random-words-here.trycloudflare.com/health" },
-    { "source": "/static/:path*", "destination": "https://random-words-here.trycloudflare.com/static/:path*" },
+    { "source": "/api/:path*", "destination": "https://filename-warming-kit-williams.trycloudflare.com/api/:path*" },
+    { "source": "/health/:path*", "destination": "https://filename-warming-kit-williams.trycloudflare.com/health/:path*" },
+    { "source": "/health", "destination": "https://filename-warming-kit-williams.trycloudflare.com/health" },
+    { "source": "/static/:path*", "destination": "https://filename-warming-kit-williams.trycloudflare.com/static/:path*" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

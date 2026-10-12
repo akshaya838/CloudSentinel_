@@ -1,0 +1,64 @@
+# CloudSentinel - Local Development Compose
+#
+# NOTE: this is a Phase 1 skeleton, not yet run against a real Docker daemon
+# in this development environment. Before relying on it:
+#   docker compose up --build
+# and verify each service actually starts and the frontend can reach the
+# backend through nginx. Known gaps vs. a production file:
+#   - no .env wiring for secrets yet (Phase 2, once auth/DB are real)
+#   - ollama service needs a model pulled manually after first `up`
+#     (docker compose exec ollama ollama pull llama3.1)
+#   - postgres is declared but NOT yet used by the backend (Phase 2)
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.backend
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=development
+      - CORS_ORIGINS=http://localhost:5173,http://localhost
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - DATABASE_URL=postgresql://cve_user:cve_pass@postgres:5432/cve_intelligence
+      # Note: ChromaDB currently runs embedded/file-based (PersistentClient),
+      # not as its own service — data/processed/chroma_store is mounted via
+      # the volume below. A standalone chromadb container is only needed if
+      # that's changed to HttpClient mode later.
+    volumes:
+      - ./data:/app/data
+      - ./outputs:/app/outputs
+    depends_on:
+      - ollama
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_USER=cve_user
+      - POSTGRES_PASSWORD=cve_pass
+      - POSTGRES_DB=cve_intelligence
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+
+volumes:
+  postgres_data:
+  ollama_data:

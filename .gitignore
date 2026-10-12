@@ -1,0 +1,13 @@
+.venv/
+venv/
+node_modules/
+__pycache__/
+*.pyc
+dist/
+.pytest_cache/
+data/processed/chroma_store/
+outputs/_tmp_*
+.env
+.DS_Store
+data/app.db
+*.db

@@ -1,0 +1,56 @@
+# --- Data & ingestion ---
+requests==2.32.3
+python-dotenv==1.0.1
+pandas==2.2.3
+
+# --- NLP / NER ---
+spacy==3.7.5
+transformers==4.44.2
+torch==2.4.1
+
+# --- Classification ---
+scikit-learn==1.5.1
+
+# --- Explainability ---
+lime==0.2.0.1
+
+# --- Embeddings & vector store ---
+sentence-transformers==3.0.1
+chromadb==0.5.5
+
+# --- RAG orchestration ---
+langchain==0.2.16
+langchain-community==0.2.16
+
+# --- Local LLM ---
+ollama==0.3.3
+
+# --- EDA / visualization (used by ml.eda, not by the API itself) ---
+matplotlib==3.9.2
+seaborn==0.13.2
+
+# --- Multilingual translation (English/Tamil/Hindi) ---
+sentencepiece==0.2.0
+
+# --- Voice I/O ---
+faster-whisper==1.0.3
+pyttsx3==2.90
+
+# --- Backend API ---
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+python-multipart==0.0.9
+pydantic==2.9.2
+
+# --- Database (SQLite by default; psycopg2 is only needed if DATABASE_URL points at PostgreSQL) ---
+# Alembic migrations are NOT set up yet: tables are created with create_all() at startup.
+sqlalchemy==2.0.35
+psycopg2-binary==2.9.9
+
+# --- Auth ---
+PyJWT==2.9.0
+bcrypt==4.2.0
+
+# --- Testing ---
+pytest==8.3.3
+httpx==0.27.2

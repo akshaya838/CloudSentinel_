@@ -1,0 +1,12 @@
+Total records: 38
+Unique CWE types: 24
+Avg CVSS base score: 8.13
+Avg description length: 31.3 words
+Avg CWEs per record: 1.08
+
+Severity breakdown:
+cvss_severity
+LOW          4
+MEDIUM       6
+HIGH        11
+CRITICAL    17
